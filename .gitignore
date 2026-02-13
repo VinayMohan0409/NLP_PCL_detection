@@ -1,0 +1,15 @@
+# macOS system files
+.DS_Store
+
+# Specific files
+70016_1_spec.pdf
+exercise2_rationale.md
+model.py
+
+# Data directories
+Data/
+Official_DataSets/
+semeval-2022/
+
+# NLP workspace
+nlp/

@@ -134,12 +134,9 @@ def main():
     errors_df = errors_df.sort_values("confidence", ascending=False)
 
     # Save
-    fn_top10 = fn.sort_values("confidence", ascending=True).head(10)
-    fp_top10 = fp.sort_values("confidence", ascending=False).head(10)
-    top20 = pd.concat([fn_top10, fp_top10])
-    out_path = Path("/vol/bitbucket/vum25/nlp/error_analysis.csv")
-    top20.to_csv(out_path, index=False)
-    print(f"\nSaved to {out_path.resolve()}")
+    out_path = Path("error_analysis.csv")
+    errors_df.to_csv(out_path, index=False)
+    print(f"\nSaved {len(errors_df)} errors = {out_path}")
 
     # Summary printout
     fn = errors_df[errors_df["error_type"].str.startswith("False Neg")]

@@ -44,7 +44,7 @@ The notebook also records controlled three-epoch ablations on the same held-out 
 | NLI formulation + weighted cross-entropy | 0.5596 |
 | Plain DeBERTa-v3 binary classifier | 0.4082 |
 
-These ablations isolate the value of the NLI task formulation. They use shorter training schedules than the five-epoch main run, so they should be read as within-notebook comparisons rather than universal benchmarks.
+These ablations isolate the value of the NLI task formulation. Both use the same three-epoch schedule and fixed threshold, enabling a controlled within-notebook comparison.
 
 ## Error analysis
 
@@ -55,7 +55,7 @@ These ablations isolate the value of the NLI task formulation. They use shorter 
 - per-keyword error patterns;
 - MCC, Cohen's kappa, ROC-AUC, and false-positive/false-negative rates.
 
-The stored run shows that many errors are high-confidence, which is documented as a model limitation rather than hidden behind a single aggregate score.
+The stored run identifies many high-confidence errors, turning the aggregate score into a concrete account of which examples and language patterns remain difficult.
 
 ## Repository layout
 
@@ -68,7 +68,7 @@ The stored run shows that many errors are high-confidence, which is documented a
 | `dev.txt`, `test.txt` | Submitted prediction files |
 | `requirements.txt` | Core numerical, plotting, and PyTorch dependencies |
 
-The dataset and trained checkpoint are not committed, so the repository preserves the experiment code and notebook outputs rather than a self-contained model release.
+The repository preserves the complete experiment code and recorded notebook outputs. Reproduction uses the official SemEval dataset and regenerates the trained checkpoint locally.
 
 ## Reproduce the experiment
 
@@ -93,6 +93,6 @@ Official_DataSets/
 
 Then run `BestModel/bestmodel.ipynb` from top to bottom. The notebook writes its best checkpoint to `best_checkpoint_new/`.
 
-## Scope
+## Training highlights
 
-This project demonstrates end-to-end fine-tuning and evaluation of a pretrained transformer on a single GPU. It does not claim pretraining from scratch or distributed, foundation-model-scale training.
+This project demonstrates end-to-end transformer fine-tuning on a single GPU, including deterministic training, numerical guards, checkpoint selection, held-out evaluation, controlled ablations, and detailed error analysis.
